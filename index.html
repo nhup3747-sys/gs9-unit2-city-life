@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS9 - Unit 2: City Life - Ôn tập tổng hợp</title>
+<style>
+:root{
+  --bg:#f4f7fb; --card:#ffffff; --ink:#1e2a3a; --muted:#6b7686;
+  --brand:#3b5bfd; --brand-dark:#2a41c9; --good:#1fae5e; --bad:#e5484d;
+  --warn:#f5a524; --line:#e3e8f0; --chip:#eef2fb;
+  --radius:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.5;padding-bottom:60px;}
+.wrap{max-width:820px;margin:0 auto;padding:18px 14px 40px;}
+.hero{background:linear-gradient(135deg,var(--brand) 0%,#7c3aed 100%);color:#fff;border-radius:var(--radius);padding:26px 22px;margin-bottom:18px;box-shadow:0 10px 30px -12px rgba(59,91,253,.5);}
+.hero h1{margin:0 0 6px;font-size:1.5rem;}
+.hero p{margin:0;opacity:.92;font-size:.95rem;}
+.badge{display:inline-block;background:rgba(255,255,255,.22);border-radius:999px;padding:3px 12px;font-size:.78rem;font-weight:600;letter-spacing:.02em;margin-bottom:10px;}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(20,30,50,.04);}
+.tip-box{background:#fff8e6;border:1px dashed var(--warn);border-radius:12px;padding:14px 16px;margin:10px 0 18px;font-size:.92rem;}
+.tip-box b{color:#8a5c00;}
+.progress-shell{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 6px;}
+.progress-bar{height:10px;border-radius:999px;background:#e3e8f0;overflow:hidden;}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#3b5bfd,#7c3aed);transition:width .25s ease;}
+.progress-label{font-size:.78rem;color:var(--muted);margin-top:4px;text-align:right;}
+.section-title{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;margin:26px 0 4px;color:var(--brand-dark);}
+.section-title .num{background:var(--brand);color:#fff;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;flex:none;}
+.section-sub{color:var(--muted);font-size:.88rem;margin-bottom:14px;}
+.q{border-top:1px solid var(--line);padding:16px 0;}
+.q:first-child{border-top:none;}
+.q-prompt{font-weight:600;margin-bottom:10px;font-size:.98rem;}
+.q-prompt .qn{color:var(--brand);margin-right:4px;}
+.options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.options.long{grid-template-columns:1fr 1fr;}
+@media (max-width:600px){.options{grid-template-columns:1fr 1fr;}}
+@media (max-width:420px){.options,.options.long{grid-template-columns:1fr;}}
+.opt{border:1.5px solid var(--line);background:#fbfcfe;border-radius:10px;padding:10px 12px;cursor:pointer;font-size:.92rem;transition:all .12s ease;user-select:none;}
+.opt .lt{font-weight:700;color:var(--brand);margin-right:4px;}
+.opt:hover{border-color:var(--brand);}
+.opt.selected{border-color:var(--brand);background:var(--chip);font-weight:600;}
+.opt.correct{border-color:var(--good);background:#e9f9ef;font-weight:600;}
+.opt.incorrect{border-color:var(--bad);background:#fdeceb;}
+input[type=text].fill,textarea.rewrite{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.95rem;font-family:inherit;background:#fbfcfe;}
+textarea.rewrite{min-height:56px;resize:vertical;}
+input[type=text].fill:focus,textarea.rewrite:focus{outline:none;border-color:var(--brand);}
+.q.marked-correct{background:#f3fcf6;border-radius:10px;}
+.q.marked-incorrect{background:#fdf4f4;border-radius:10px;}
+.result-note{margin-top:8px;font-size:.86rem;padding:8px 10px;border-radius:8px;}
+.result-note.ok{background:#e9f9ef;color:#0d7a3f;}
+.result-note.no{background:#fdeceb;color:#a8231f;}
+.student-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media (max-width:480px){.student-grid{grid-template-columns:1fr;}}
+.field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:4px;font-weight:600;}
+.field input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.95rem;background:#fbfcfe;}
+.field input:focus{outline:none;border-color:var(--brand);}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;border:none;border-radius:12px;padding:14px 22px;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 8px 20px -8px rgba(59,91,253,.6);width:100%;justify-content:center;}
+.btn:hover{background:var(--brand-dark);}
+.submit-bar{position:sticky;bottom:0;background:linear-gradient(180deg,rgba(244,247,251,0) 0%,var(--bg) 30%);padding:16px 0 6px;}
+.score-card{text-align:center;padding:30px 20px;}
+.score-num{font-size:3.2rem;font-weight:800;background:linear-gradient(135deg,var(--brand),#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.score-msg{font-size:1.05rem;font-weight:600;margin:6px 0 2px;}
+.score-sub{color:var(--muted);font-size:.9rem;}
+.send-status{margin-top:12px;font-size:.88rem;font-weight:600;}
+.send-status.pending{color:var(--muted);}
+.send-status.ok{color:var(--good);}
+.send-status.fail{color:var(--bad);}
+.hidden{display:none!important;}
+.err{color:var(--bad);font-size:.85rem;margin-top:6px;}
+.footer-note{text-align:center;color:var(--muted);font-size:.78rem;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="badge">GS9 · Global Success 9</div>
+    <h1>Unit 2: City Life</h1>
+    <p>Ôn tập tổng hợp: Từ vựng · Ngữ pháp · Word Form · Viết lại câu · Từ đồng nghĩa &amp; trái nghĩa — 28 câu</p>
+  </div>
+
+  <div class="tip-box"><b>Ghi nhớ nhanh - So sánh kép (Double comparatives):</b><br>Dạng 1: <b>The + comparative + S + V, the + comparative + S + V</b> (Càng... thì càng...). Ví dụ: <i>The more crowded the city is, the more polluted the air gets.</i><br>Dạng 2: <b>S + V + comparative + and + comparative</b> (càng ngày càng...). Ví dụ: <i>The traffic is getting worse and worse.</i><br>Tính từ ngắn: thêm <b>-er</b> (busy→busier). Tính từ dài: <b>more/less + adj</b>.</div>
+
+  <div class="card">
+    <div class="section-title" style="margin-top:0"><span class="num">i</span> Thông tin học sinh</div>
+    <div class="student-grid">
+      <div class="field"><label>Trường</label><input type="text" id="stu-school" placeholder="VD: THCS Nguyễn Văn Trỗi"></div>
+      <div class="field"><label>Lớp *</label><input type="text" id="stu-class" placeholder="VD: 9A1"></div>
+    </div>
+    <div class="field" style="margin-top:10px"><label>Họ và tên *</label><input type="text" id="stu-name" placeholder="Nhập họ và tên của em"></div>
+    <div class="err hidden" id="stu-err"></div>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">Đã trả lời 0/28 câu (0%)</div>
+  </div>
+
+  <div id="quiz-body"></div>
+
+  <div class="submit-bar" id="submit-bar">
+    <button class="btn" id="submitBtn" onclick="submitTest()">✅ Nộp bài &amp; Xem kết quả</button>
+  </div>
+
+  <div class="card score-card hidden" id="score-card">
+    <div class="score-num" id="score-num">0</div>
+    <div class="score-msg" id="score-msg"></div>
+    <div class="score-sub" id="score-sub"></div>
+    <div class="send-status pending" id="send-status"></div>
+  </div>
+
+  <div class="footer-note">Kết quả sẽ được gửi tự động cho giáo viên sau khi em nộp bài. Chúc em học tốt! 💪</div>
+</div>
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby08od-VjK63bcLdiXGBgjz9imiBImjbBBKmjHqN1AnzfpBhEjFyItSniMfbPKm9TA/exec";
+const CLASS_LABEL = "GS9";
+const TEST_NAME = "Ôn tập tổng hợp Unit 2: City Life";
+const QUESTIONS = [
+{"id":"u2_v1","section":"vocab","type":"mcq","prompt":"During ______, the roads in the city centre are extremely busy.","options":["rush hour","leisure","scenery","heritage"],"answer":0},
+{"id":"u2_v2","section":"vocab","type":"mcq","prompt":"Many people prefer using ______ like buses and the metro instead of private cars.","options":["handicraft","public transport","pavement","souvenir"],"answer":1},
+{"id":"u2_v3","section":"vocab","type":"mcq","prompt":"The city is very ______ ; you can hardly find a place to park your motorbike.","options":["peaceful","coastal","crowded","liveable"],"answer":2},
+{"id":"u2_v4","section":"vocab","type":"mcq","prompt":"Car exhaust and factory smoke are the main causes of ______ in big cities.","options":["noise pollution","traffic jam","crime rate","air pollution"],"answer":3},
+{"id":"u2_v5","section":"vocab","type":"mcq","prompt":"Because of the high ______, many young people find it hard to afford an apartment downtown.","options":["cost of living","rush hour","pavement","nightlife"],"answer":0},
+{"id":"u2_v6","section":"vocab","type":"mcq","prompt":"There was a serious ______ on the highway this morning, so I was late for school.","options":["food stall","traffic jam","green space","art gallery"],"answer":1},
+{"id":"u2_g1","section":"grammar","type":"fill","prompt":"The ______ (BUSY) the street becomes, the more polluted the air gets.","accepted":["busier"],"answer":"busier"},
+{"id":"u2_g2","section":"grammar","type":"fill","prompt":"The more people move to the city, the ______ (EXPENSIVE) the houses become.","accepted":["more expensive"],"answer":"more expensive"},
+{"id":"u2_g3","section":"grammar","type":"fill","prompt":"Traffic in the city centre is getting ______. (BUSY - dùng cấu trúc: comparative + and + comparative)","accepted":["busier and busier"],"answer":"busier and busier"},
+{"id":"u2_g4","section":"grammar","type":"mcq","long":true,"prompt":"Choose the correct sentence.","options":["The higher buildings are, the expensive the rent is.","The high the buildings are, the more expensive the rent is.","The higher the buildings are, the more expensive the rent is.","The higher the buildings, the rent is more expensive."],"answer":2},
+{"id":"u2_g5","section":"grammar","type":"fill","prompt":"The more crowded the city is, the ______ (NOISY) it becomes.","accepted":["noisier"],"answer":"noisier"},
+{"id":"u2_g6","section":"grammar","type":"mcq","prompt":"As people get richer, they buy ______ cars.","options":["most and most","many and many","more and most","more and more"],"answer":3},
+{"id":"u2_wf1","section":"wordform","type":"fill","prompt":"Motorbike exhaust is one of the main causes of air ______ (POLLUTE) in Ho Chi Minh City.","accepted":["pollution"],"answer":"pollution"},
+{"id":"u2_wf2","section":"wordform","type":"fill","prompt":"Living near the metro station is very ______ (CONVENIENCE) for commuters.","accepted":["convenient"],"answer":"convenient"},
+{"id":"u2_wf3","section":"wordform","type":"fill","prompt":"The old quarter is a popular tourist ______ (ATTRACT) because of its unique architecture.","accepted":["attraction"],"answer":"attraction"},
+{"id":"u2_wf4","section":"wordform","type":"fill","prompt":"Public buses in this city are not very ______ (RELY) - they are often late.","accepted":["reliable"],"answer":"reliable"},
+{"id":"u2_wf5","section":"wordform","type":"fill","prompt":"The population ______ (DENSE) in the city centre is much higher than in the suburbs.","accepted":["density"],"answer":"density"},
+{"id":"u2_r1","section":"rewrite","type":"rewrite","prompt":"As the city grows bigger, the traffic becomes worse. (Viết lại với: the + comparative..., the + comparative...)","accepted":["the bigger the city grows, the worse the traffic becomes","the bigger the city grows, the worse the traffic gets","the bigger the city becomes, the worse the traffic becomes"],"answer":"the bigger the city grows, the worse the traffic becomes"},
+{"id":"u2_r2","section":"rewrite","type":"rewrite","prompt":"House prices are increasing very quickly nowadays. (Viết lại với so sánh kép: comparative and comparative)","accepted":["house prices are getting higher and higher nowadays","house prices are getting more and more expensive nowadays","house prices are getting higher and higher","house prices are getting more and more expensive","nowadays house prices are getting higher and higher","nowadays house prices are getting more and more expensive"],"answer":"house prices are getting higher and higher nowadays"},
+{"id":"u2_r3","section":"rewrite","type":"rewrite","prompt":"When there are more cars on the road, the air becomes more polluted. (Viết lại với: the more..., the more...)","accepted":["the more cars there are on the road, the more polluted the air becomes","the more cars there are on the road, the more polluted the air is","the more cars there are on the road, the more polluted the air gets"],"answer":"the more cars there are on the road, the more polluted the air becomes"},
+{"id":"u2_r4","section":"rewrite","type":"rewrite","prompt":"The weather in the city is becoming hotter each year. (Viết lại với so sánh kép)","accepted":["the weather in the city is getting hotter and hotter","the weather in the city is becoming hotter and hotter","the weather in the city is getting hotter and hotter each year","the weather in the city is becoming hotter and hotter each year"],"answer":"the weather in the city is getting hotter and hotter"},
+{"id":"u2_r5","section":"rewrite","type":"rewrite","prompt":"If people become busier, they have less free time. (Viết lại với: the + comparative..., the + comparative...)","accepted":["the busier people become, the less free time they have","the busier people are, the less free time they have","the busier people get, the less free time they have"],"answer":"the busier people become, the less free time they have"},
+{"id":"u2_s1","section":"synonym","type":"mcq","prompt":"Chọn từ trái nghĩa (antonym) với 'crowded'.","options":["empty","busy","dense","large"],"answer":0},
+{"id":"u2_s2","section":"synonym","type":"mcq","prompt":"Chọn từ trái nghĩa (antonym) với 'convenient'.","options":["easy","inconvenient","quick","cheap"],"answer":1},
+{"id":"u2_s3","section":"synonym","type":"mcq","prompt":"Chọn từ trái nghĩa (antonym) với 'peaceful'.","options":["quiet","safe","noisy","calm"],"answer":2},
+{"id":"u2_s4","section":"synonym","type":"mcq","prompt":"Chọn từ trái nghĩa (antonym) với 'safe'.","options":["reliable","convenient","modern","dangerous"],"answer":3},
+{"id":"u2_s5","section":"synonym","type":"mcq","prompt":"Chọn từ trái nghĩa (antonym) với 'modern'.","options":["old-fashioned","attractive","expensive","crowded"],"answer":0},
+{"id":"u2_s6","section":"synonym","type":"mcq","prompt":"Chọn từ đồng nghĩa (synonym) với 'pricey'.","options":["cheap","expensive","free","affordable"],"answer":1}
+];
+
+const state = {};
+let submitted = false;
+
+function norm(s){
+  return (s||"").toString().trim().toLowerCase().normalize('NFC')
+    .replace(/[.,!?;:'"“”‘’]/g,'').replace(/\s+/g,' ').trim();
+}
+
+function isCorrect(q){
+  if(q.type === 'mcq') return state[q.id] === q.answer;
+  const given = norm(state[q.id]);
+  if(!given) return false;
+  return (q.accepted || [q.answer]).map(norm).includes(given);
+}
+
+const LETTERS = ['A','B','C','D'];
+function renderOptions(q){
+  return q.options.map((opt, i) =>
+    `<div class="opt" data-qid="${q.id}" data-idx="${i}" onclick="selectOpt('${q.id}', ${i})"><span class="lt">${LETTERS[i]}.</span>${opt}</div>`
+  ).join('');
+}
+
+function sectionMeta(key){
+  return {
+    vocab: {title:'Từ vựng', sub:'Chọn từ đúng theo ngữ cảnh.'},
+    grammar: {title:'Ngữ pháp', sub:'Vận dụng đúng cấu trúc so sánh kép.'},
+    wordform: {title:'Word Form', sub:'Biến đổi từ trong ngoặc cho đúng dạng.'},
+    rewrite: {title:'Viết lại câu', sub:'Viết lại câu sao cho nghĩa không đổi, dùng đúng cấu trúc gợi ý.'},
+    synonym: {title:'Từ đồng nghĩa & trái nghĩa', sub:'Chọn từ đồng nghĩa (synonym) hoặc trái nghĩa (antonym) phù hợp.'}
+  }[key];
+}
+
+function buildForm(){
+  const bySection = {};
+  QUESTIONS.forEach(q => { (bySection[q.section] = bySection[q.section] || []).push(q); });
+  let html = '', sIdx = 0;
+  ['vocab','grammar','wordform','rewrite','synonym'].forEach(key => {
+    const qs = bySection[key];
+    if(!qs || !qs.length) return;
+    sIdx++;
+    const meta = sectionMeta(key);
+    html += `<div class="section-title"><span class="num">${sIdx}</span> Phần ${sIdx}: ${meta.title}</div><div class="section-sub">${meta.sub}</div><div class="card">`;
+    qs.forEach((q, i) => {
+      html += `<div class="q" id="qwrap-${q.id}"><div class="q-prompt"><span class="qn">Câu ${i+1}.</span>${q.prompt}</div>`;
+      if(q.type === 'mcq') html += `<div class="options${q.long?' long':''}">${renderOptions(q)}</div>`;
+      else if(q.type === 'fill') html += `<input type="text" class="fill" id="input-${q.id}" placeholder="Nhập câu trả lời..." oninput="state['${q.id}']=this.value; updateProgress();">`;
+      else html += `<textarea class="rewrite" id="input-${q.id}" placeholder="Viết lại cả câu..." oninput="state['${q.id}']=this.value; updateProgress();"></textarea>`;
+      html += `<div class="result-note hidden" id="note-${q.id}"></div></div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById('quiz-body').innerHTML = html;
+  updateProgress();
+}
+
+function selectOpt(qid, idx){
+  if(submitted) return;
+  state[qid] = idx;
+  document.querySelectorAll(`.opt[data-qid="${qid}"]`).forEach(el => {
+    el.classList.toggle('selected', Number(el.dataset.idx) === idx);
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = QUESTIONS.length;
+  let answered = 0;
+  QUESTIONS.forEach(q => { const v = state[q.id]; if(v !== undefined && v !== null && String(v).trim() !== '') answered++; });
+  const pct = total ? Math.round(answered/total*100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `Đã trả lời ${answered}/${total} câu (${pct}%)`;
+}
+
+function scoreMessage(score){
+  if(score >= 9) return '🌟 Xuất sắc! Em đã nắm rất chắc phần này rồi!';
+  if(score >= 7) return '👏 Khá tốt! Chỉ cần chắc thêm vài chỗ nhỏ nữa thôi!';
+  if(score >= 5) return '💪 Ổn rồi! Xem lại các câu sai để nhớ lâu hơn nhé!';
+  return '🔄 Đừng nản! Xem đáp án đúng bên dưới rồi làm lại — mỗi lần làm lại là một lần nhớ sâu hơn!';
+}
+
+function validateStudentInfo(){
+  const name = document.getElementById('stu-name').value.trim();
+  const cls = document.getElementById('stu-class').value.trim();
+  const err = document.getElementById('stu-err');
+  if(!cls || !name){
+    err.textContent = 'Em vui lòng nhập đầy đủ Lớp và Họ và tên trước khi nộp bài nhé.';
+    err.classList.remove('hidden');
+    document.getElementById(!cls ? 'stu-class' : 'stu-name').focus();
+    window.scrollTo({top:0, behavior:'smooth'});
+    return false;
+  }
+  err.classList.add('hidden');
+  return true;
+}
+
+function setStatus(text, cls){
+  const el = document.getElementById('send-status');
+  el.textContent = text;
+  el.className = 'send-status ' + cls;
+}
+
+function sendResult(payload){
+  setStatus('⏳ Đang gửi kết quả cho giáo viên...', 'pending');
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload)
+  }).then(() => setStatus('✅ Đã gửi kết quả về hệ thống.', 'ok'))
+    .catch(() => setStatus('❌ Gửi kết quả thất bại. Em hãy chụp màn hình điểm gửi cho cô nhé.', 'fail'));
+}
+
+function submitTest(){
+  if(submitted) return;
+  if(!validateStudentInfo()) return;
+  submitted = true;
+
+  let correct = 0;
+  QUESTIONS.forEach(q => {
+    const ok = isCorrect(q);
+    if(ok) correct++;
+    const note = document.getElementById('note-'+q.id);
+    const wrap = document.getElementById('qwrap-'+q.id);
+    if(q.type === 'mcq'){
+      document.querySelectorAll(`.opt[data-qid="${q.id}"]`).forEach(el => {
+        const idx = Number(el.dataset.idx);
+        if(idx === q.answer) el.classList.add('correct');
+        else if(idx === state[q.id] && !ok) el.classList.add('incorrect');
+      });
+    } else {
+      const inp = document.getElementById('input-'+q.id);
+      if(inp) inp.readOnly = true;
+    }
+    note.classList.remove('hidden');
+    if(ok){
+      note.classList.add('ok');
+      note.innerHTML = '<b>✅ Chính xác!</b>';
+    } else {
+      note.classList.add('no');
+      const correctText = q.type === 'mcq' ? LETTERS[q.answer] + '. ' + q.options[q.answer] : (q.accepted ? q.accepted[0] : q.answer);
+      note.innerHTML = `<b>❌ Chưa đúng.</b> Đáp án đúng: <b>${correctText}</b>`;
+    }
+    wrap.classList.add(ok ? 'marked-correct' : 'marked-incorrect');
+  });
+
+  const total = QUESTIONS.length;
+  const score10 = (Math.round(correct/total*100)/10).toFixed(1);
+
+  document.getElementById('score-num').textContent = score10;
+  document.getElementById('score-msg').textContent = scoreMessage(Number(score10));
+  document.getElementById('score-sub').textContent = `Đúng ${correct}/${total} câu`;
+  document.getElementById('score-card').classList.remove('hidden');
+  document.getElementById('submit-bar').classList.add('hidden');
+  document.getElementById('score-card').scrollIntoView({behavior:'smooth', block:'start'});
+
+  sendResult({
+    className: CLASS_LABEL,
+    testName: TEST_NAME,
+    school: document.getElementById('stu-school').value.trim(),
+    studentClass: document.getElementById('stu-class').value.trim(),
+    name: document.getElementById('stu-name').value.trim(),
+    correct: correct,
+    total: total,
+    score10: score10,
+    timestamp: new Date().toISOString()
+  });
+}
+
+document.addEventListener('DOMContentLoaded', buildForm);
+</script>
+</body>
+</html>
